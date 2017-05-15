@@ -6,7 +6,7 @@ var gemBoss = {
   },
   payEmployee: function(){
     var payment = gemBoss.calculatePay();
-    $('.alert').append('<p>Your take home pay for the day is ' + payment + '.</p>');
+    $('.alert').append('<p>Your take home pay for the day is $' + payment + '.</p>');
     crystalValues.takeHomePay = crystalValues.takeHomePay + payment;
     $('.take_home_pay').html(crystalValues.takeHomePay);
   },

@@ -1,3 +1,7 @@
+//disable LeaveMine button if cavein or Fired
+//cannot be fired if within 2 of targetScore
+//create reset button
+
 var crystalFunctions = {
   getCrystalValue: function(){
     return (Math.floor(Math.random() * 12)) + 1;
