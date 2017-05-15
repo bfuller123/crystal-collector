@@ -2,3 +2,13 @@ img {
   height: 50px;
   width: 50px;
 }
+
+.leave_mine {
+  color: #3498DB !important;
+  border: 2px solid #3498db !important;
+  font-weight: bold !important;
+}
+
+.alert {
+  color: #D91E18;
+}
