@@ -18,10 +18,12 @@ var gemBoss = {
     $('.alert').html("I guess this is enough...but I'm docking your pay!");
     gemBoss.dockingPay();
     gemBoss.payEmployee();
+    crystalValues.nextDay();
   },
   satisfied: function(){
     $('.alert').html("While I'm not thrilled...this works for me.");
     gemBoss.payEmployee();
+    crystalValues.nextDay();
   },
   fireYou: function(){
     crystalValues['crystalOne'] = crystalValues['crystalTwo'] = crystalValues['crystalThree'] = crystalValues['crystalFour'] = 0;
