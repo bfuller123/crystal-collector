@@ -1,7 +1,7 @@
 
 var gemBoss = {
   calculatePay: function(){
-    var payment = crystalFunctions.currentScore * (Math.floor(Math.random() * 3)+1);
+    var payment = crystalValues.currentScore * (Math.floor(Math.random() * 3)+1);
     return payment;
   },
   payEmployee: function(){
