@@ -1,14 +1,13 @@
 //disable LeaveMine button if cavein or Fired
-//cannot be fired if within 2 of targetScore
 //create reset button
 
 var crystalFunctions = {
-  getCrystalValue: function(){
+  getCrystalValue: function() {
     return (Math.floor(Math.random() * 12)) + 1;
   },
 
-  getTargetScore: function(){
-    return (Math.floor(Math.random()*101))+19;
+  getTargetScore: function() {
+    return (Math.floor(Math.random() * 101)) + 19;
   }
 };
 
@@ -21,7 +20,7 @@ var crystalValues = {
   currentScore: 0,
   takeHomePay: 0,
   day: 1,
-  nextDay: function(){
+  nextDay: function() {
     this.targetScore = crystalFunctions.getTargetScore();
     this['crystalOne'] = crystalFunctions.getCrystalValue();
     this['crystalTwo'] = crystalFunctions.getCrystalValue();
@@ -36,11 +35,11 @@ var crystalValues = {
 }
 
 
-$(document).ready(function(){
+$(document).ready(function() {
   $('.target_score').html(crystalValues.targetScore);
   $('.day').html(crystalValues.day);
 
-  $('.crystal').on('click', function(){
+  $('.crystal').on('click', function() {
     var name = $(this).attr('name');
 
     crystalValues.currentScore = crystalValues.currentScore + crystalValues[name];
@@ -52,8 +51,7 @@ $(document).ready(function(){
       crystalValues.takeHomePay = crystalValues.takeHomePay + crystalValues.currentScore;
       $('.take_home_pay').html(crystalValues.takeHomePay);
       crystalValues.nextDay();
-    }
-    else if (crystalValues.currentScore > crystalValues.targetScore) {
+    } else if (crystalValues.currentScore > crystalValues.targetScore) {
       crystalValues['crystalOne'] = crystalValues['crystalTwo'] = crystalValues['crystalThree'] = crystalValues['crystalFour'] = 0;
       $('.alert').html('Cave in! You lose');
     }
