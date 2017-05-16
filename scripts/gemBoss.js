@@ -17,12 +17,12 @@ var gemBoss = {
     $('.alert').html("I guess this is enough...but I'm docking your pay!");
     gemBoss.dockingPay();
     gemBoss.payEmployee();
-    crystalValues.nextDay();
+    setTimeout(crystalValues.nextDay, 2000);
   },
   satisfied: function() {
     $('.alert').html("While I'm not thrilled...this works for me.");
     gemBoss.payEmployee();
-    crystalValues.nextDay();
+    setTimeout(crystalValues.nextDay, 2000);
   },
   fireYou: function() {
     if (crystalValues.targetScore - crystalValues.currentScore < 3) {

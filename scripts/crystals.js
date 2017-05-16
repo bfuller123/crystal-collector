@@ -20,32 +20,40 @@ var crystalValues = {
   currentScore: 0,
   takeHomePay: 0,
   day: 1,
+  wins: 0,
+  losses: 0,
   gameOver: false,
   nextDay: function() {
-    this.targetScore = crystalFunctions.getTargetScore();
-    this['crystalOne'] = crystalFunctions.getCrystalValue();
-    this['crystalTwo'] = crystalFunctions.getCrystalValue();
-    this['crystalThree'] = crystalFunctions.getCrystalValue();
-    this['crystalFour'] = crystalFunctions.getCrystalValue();
-    this.currentScore = 0;
-    this.day = this.day + 1;
-    $('.target_score').html(this.targetScore);
-    $('.current_score').html(this.currentScore);
-    $('.day').html(this.day);
+    crystalValues.targetScore = crystalFunctions.getTargetScore();
+    crystalValues['crystalOne'] = crystalFunctions.getCrystalValue();
+    crystalValues['crystalTwo'] = crystalFunctions.getCrystalValue();
+    crystalValues['crystalThree'] = crystalFunctions.getCrystalValue();
+    crystalValues['crystalFour'] = crystalFunctions.getCrystalValue();
+    crystalValues.currentScore = 0;
+    crystalValues.day = crystalValues.day + 1;
+    crystalValues.wins = crystalValues.wins + 1;
+    $('.wins').html(crystalValues.wins);
+    $('.target_score').html(crystalValues.targetScore);
+    $('.current_score').html(crystalValues.currentScore);
+    $('.day').html(crystalValues.day);
+    $('.alert').html('');
   },
   reset: function() {
-    this.targetScore = crystalFunctions.getTargetScore();
-    this['crystalOne'] = crystalFunctions.getCrystalValue();
-    this['crystalTwo'] = crystalFunctions.getCrystalValue();
-    this['crystalThree'] = crystalFunctions.getCrystalValue();
-    this['crystalFour'] = crystalFunctions.getCrystalValue();
-    this.currentScore = 0;
-    this.day = 1;
-    this.gameOver = false;
-    this.takeHomePay = 0;
-    $('.target_score').html(this.targetScore);
-    $('.current_score').html(this.currentScore);
-    $('.day').html(this.day);
+    //due to the way this is being invoked, must use explicit object names rather than this.
+    crystalValues.targetScore = crystalFunctions.getTargetScore();
+    crystalValues['crystalOne'] = crystalFunctions.getCrystalValue();
+    crystalValues['crystalTwo'] = crystalFunctions.getCrystalValue();
+    crystalValues['crystalThree'] = crystalFunctions.getCrystalValue();
+    crystalValues['crystalFour'] = crystalFunctions.getCrystalValue();
+    crystalValues.currentScore = 0;
+    crystalValues.day = 1;
+    crystalValues.gameOver = false;
+    crystalValues.takeHomePay = 0;
+    crystalValues.losses++;
+    $('.losses').html(crystalValues.losses);
+    $('.target_score').html(crystalValues.targetScore);
+    $('.current_score').html(crystalValues.currentScore);
+    $('.day').html(crystalValues.day);
     $('.alert').html('');
     $('.btn').prop('disabled', false);
   }
@@ -55,6 +63,8 @@ var crystalValues = {
 $(document).ready(function() {
   $('.target_score').html(crystalValues.targetScore);
   $('.day').html(crystalValues.day);
+  $('.wins').html(crystalValues.wins);
+  $('.losses').html(crystalValues.losses);
 
   $('.crystal').on('click', function() {
     var name = $(this).attr('name');
@@ -67,7 +77,7 @@ $(document).ready(function() {
       crystalValues.currentScore = crystalValues.currentScore * 1.5;
       crystalValues.takeHomePay = crystalValues.takeHomePay + crystalValues.currentScore;
       $('.take_home_pay').html(crystalValues.takeHomePay);
-      crystalValues.nextDay();
+      setTimeout(crystalValues.nextDay, 2000);
     } else if (crystalValues.currentScore > crystalValues.targetScore) {
       crystalValues.gameOver = true;
       crystalValues['crystalOne'] = crystalValues['crystalTwo'] = crystalValues['crystalThree'] = crystalValues['crystalFour'] = 0;
@@ -76,7 +86,7 @@ $(document).ready(function() {
     }
     if(crystalValues.gameOver == true) {
       $('.btn').prop('disabled', true);
-      setTimeout(crystalValues.reset, 3000);
+      setTimeout(crystalValues.reset, 2000);
     }
   });
 
