@@ -1,5 +1,5 @@
-//disable LeaveMine button if cavein or Fired
-//create reset button
+//show wins and loses
+
 
 var crystalFunctions = {
   getCrystalValue: function() {
@@ -20,6 +20,7 @@ var crystalValues = {
   currentScore: 0,
   takeHomePay: 0,
   day: 1,
+  gameOver: false,
   nextDay: function() {
     this.targetScore = crystalFunctions.getTargetScore();
     this['crystalOne'] = crystalFunctions.getCrystalValue();
@@ -31,6 +32,22 @@ var crystalValues = {
     $('.target_score').html(this.targetScore);
     $('.current_score').html(this.currentScore);
     $('.day').html(this.day);
+  },
+  reset: function() {
+    this.targetScore = crystalFunctions.getTargetScore();
+    this['crystalOne'] = crystalFunctions.getCrystalValue();
+    this['crystalTwo'] = crystalFunctions.getCrystalValue();
+    this['crystalThree'] = crystalFunctions.getCrystalValue();
+    this['crystalFour'] = crystalFunctions.getCrystalValue();
+    this.currentScore = 0;
+    this.day = 1;
+    this.gameOver = false;
+    this.takeHomePay = 0;
+    $('.target_score').html(this.targetScore);
+    $('.current_score').html(this.currentScore);
+    $('.day').html(this.day);
+    $('.alert').html('');
+    $('.btn').prop('disabled', false);
   }
 }
 
@@ -52,9 +69,16 @@ $(document).ready(function() {
       $('.take_home_pay').html(crystalValues.takeHomePay);
       crystalValues.nextDay();
     } else if (crystalValues.currentScore > crystalValues.targetScore) {
+      crystalValues.gameOver = true;
       crystalValues['crystalOne'] = crystalValues['crystalTwo'] = crystalValues['crystalThree'] = crystalValues['crystalFour'] = 0;
-      $('.alert').html('Cave in! You lose');
+      $('.alert').html('Cave in!');
+      $('.alert').append('<p>Game over!</p>');
+    }
+    if(crystalValues.gameOver == true) {
+      $('.btn').prop('disabled', true);
+      setTimeout(crystalValues.reset, 3000);
     }
   });
+
 
 });
