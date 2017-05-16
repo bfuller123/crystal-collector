@@ -1,3 +1,19 @@
+.jumbotron {
+  background-color: #674172 !important;
+}
+
+.jumbotron h1 {
+  font-family: 'Bungee Inline', cursive;
+}
+
+.white {
+  color: #ffffff !important;
+}
+
+.jumbotron h3, p, .scores {
+  font-family: 'Righteous', cursive;
+}
+
 img {
   height: 50px;
   width: 50px;
