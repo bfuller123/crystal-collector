@@ -56,6 +56,10 @@ var crystalValues = {
     $('.day').html(crystalValues.day);
     $('.alert').html('');
     $('.btn').prop('disabled', false);
+  },
+  freezeButtons: function() {
+    $('.btn').prop('disabled', true);
+    setTimeout(crystalValues.reset, 2000);
   }
 }
 
@@ -85,8 +89,7 @@ $(document).ready(function() {
       $('.alert').append('<p>Game over!</p>');
     }
     if(crystalValues.gameOver == true) {
-      $('.btn').prop('disabled', true);
-      setTimeout(crystalValues.reset, 2000);
+      crystalValues.freezeButtons();
     }
   });
 

@@ -28,9 +28,9 @@ var gemBoss = {
     if (crystalValues.targetScore - crystalValues.currentScore < 3) {
       gemBoss.satisfied();
     } else {
-      crystalValues.gameOver = true;
       $('.alert').html("You didn't bring me enough crystals. You're Fired!");
       $('.alert').append('<p>Game over!</p>');
+      crystalValues.freezeButtons();
     }
   },
   backToWork: function() {
